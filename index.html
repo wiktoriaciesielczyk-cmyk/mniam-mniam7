@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mniam Mniam</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+background:black;
+}
+
+.logo{
+width:250px;
+max-width:90%;
+border-radius:20px;
+}
+
+header h1{
+font-size:60px;
+color:#ffb300;
+margin-top:20px;
+}
+
+header p{
+font-size:22px;
+color:#ddd;
+}
+
+section{
+padding:40px 20px;
+}
+
+h2{
+text-align:center;
+font-size:45px;
+color:#ffb300;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:#222;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.5);
+}
+
+.card h3{
+color:#ffb300;
+margin-bottom:15px;
+font-size:30px;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid #444;
+}
+
+button{
+background:#ffb300;
+border:none;
+padding:10px 20px;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffc933;
+}
+
+#cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#ffb300;
+color:black;
+padding:18px;
+border-radius:50px;
+font-weight:bold;
+cursor:pointer;
+z-index:999;
+}
+
+input[type=text]{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:none;
+margin-top:10px;
+}
+
+label{
+display:block;
+margin:8px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<img src="logo.jpg" class="logo" alt="Mniam Mniam">
+
+<h1>Mniam Mniam</h1>
+
+<p>Jedzenie na miejscu, na wynos i z dostawą</p>
+
+</header>
+<section class="section">
+<h2>🍹 Napoje</h2>
+
+<div class="card">
+<h3>Herbata</h3>
+<p>Czarna - 5 zł <button onclick="dodaj('Herbata Czarna',5)">Dodaj</button></p>
+<p>Zielona - 5 zł <button onclick="dodaj('Herbata Zielona',5)">Dodaj</button></p>
+<p>Owocowa - 7 zł <button onclick="dodaj('Herbata Owocowa',7)">Dodaj</button></p>
+</div>
+
+<div class="card">
+<h3>Kawa</h3>
+<p>Espresso - 5 zł <button onclick="dodaj('Espresso',5)">Dodaj</button></p>
+<p>Americano - 7 zł <button onclick="dodaj('Americano',7)">Dodaj</button></p>
+<p>Latte - 10 zł <button onclick="dodaj('Latte',10)">Dodaj</button></p>
+<p>Mrożone Latte - 12 zł <button onclick="dodaj('Mrożone Latte',12)">Dodaj</button></p>
+<p>Mrożone Americano - 9 zł <button onclick="dodaj('Mrożone Americano',9)">Dodaj</button></p>
+</div>
+
+<div class="card">
+<h3>Smoothie</h3>
+<p>Bananowe - 9 zł <button onclick="dodaj('Smoothie Bananowe',9)">Dodaj</button></p>
+<p>Truskawkowe - 9 zł <button onclick="dodaj('Smoothie Truskawkowe',9)">Dodaj</button></p>
+<p>Bananowo-Truskawkowe - 10 zł <button onclick="dodaj('Smoothie Bananowo-Truskawkowe',10)">Dodaj</button></p>
+</div>
+
+<div class="card">
+<h3>Matcha</h3>
+<p>Tradycyjna - 11 zł <button onclick="dodaj('Matcha Tradycyjna',11)">Dodaj</button></p>
+<p>Truskawkowa - 12 zł <button onclick="dodaj('Matcha Truskawkowa',12)">Dodaj</button></p>
+<p>Bananowo-Czekoladowa - 13 zł <button onclick="dodaj('Matcha Bananowo-Czekoladowa',13)">Dodaj</button></p>
+</div>
+
+<div class="card">
+<h3>Shake</h3>
+<p>Waniliowy - 10 zł <button onclick="dodaj('Shake Waniliowy',10)">Dodaj</button></p>
+<p>Truskawkowy - 10 zł <button onclick="dodaj('Shake Truskawkowy',10)">Dodaj</button></p>
+<p>Czekoladowy - 10 zł <button onclick="dodaj('Shake Czekoladowy',10)">Dodaj</button></p>
+</div>
+
+</section>
+
+<section class="section">
+<h2>🍨 Desery</h2>
+
+<div class="card">
+<h3>Gałki lodów</h3>
+
+<p>Czekoladowa - 4 zł
+<button onclick="dodaj('Lód Czekoladowy',4)">Dodaj</button>
+</p>
+
+<p>Truskawkowa - 4 zł
+<button onclick="dodaj('Lód Truskawkowy',4)">Dodaj</button>
+</p>
+
+<p>Oreo - 4 zł
+<button onclick="dodaj('Lód Oreo',4)">Dodaj</button>
+</p>
+
+</div>
+
+<div class="card">
+<h3>Desery lodowe</h3>
+
+<p>Mały - 12 zł
+<button onclick="dodaj('Deser lodowy mały',12)">Dodaj</button>
+</p>
+
+<p>Duży - 15 zł
+<button onclick="dodaj('Deser lodowy duży',15)">Dodaj</button>
+</p>
+
+</div>
+
+<div class="card">
+<h3>Gofry z dodatkami</h3>
+
+<p>Gofr podstawowy - 8 zł</p>
+
+<label>
+<input type="checkbox" value="1">
+Cukier puder (+1 zł)
+</label><br>
+
+<label>
+<input type="checkbox" value="2">
+Owoce (+2 zł)
+</label><br>
+
+<label>
+<input type="checkbox" value="1">
+Bita śmietana (+1 zł)
+</label><br>
+
+<label>
+<input type="checkbox" value="1">
+Sos czekoladowy (+1 zł)
+</label><br>
+
+<label>
+<input type="checkbox" value="1">
+Sos truskawkowy (+1 zł)
+</label><br>
+
+<button onclick="dodaj('Gofr z dodatkami',8)">
+Dodaj gofra
+</button>
+
+</div>
+
+</section>
+<section class="section">
+<h2>⭐ Zestawy</h2>
+
+<div class="card">
+<p>1. Burger wołowina + frytki małe + napój — 27 zł
+<button onclick="dodaj('Zestaw 1',27)">Dodaj</button></p>
+
+<p>2. Kebab kurczak + napój + lód — 25 zł
+<button onclick="dodaj('Zestaw 2',25)">Dodaj</button></p>
+
+<p>3. Smash Burger + frytki małe + napój — 34 zł
+<button onclick="dodaj('Zestaw 3',34)">Dodaj</button></p>
+
+<p>4. Hot Dog amerykański + frytki małe + napój — 20 zł
+<button onclick="dodaj('Zestaw 4',20)">Dodaj</button></p>
+
+<p>5. Zapiekanka tradycyjna + napój + lód — 21 zł
+<button onclick="dodaj('Zestaw 5',21)">Dodaj</button></p>
+
+<p>6. Gofr + shake + gałka lodów — 19 zł
+<button onclick="dodaj('Zestaw 6',19)">Dodaj</button></p>
+
+<p>7. Latte + gofr — 16 zł
+<button onclick="dodaj('Zestaw 7',16)">Dodaj</button></p>
+
+<p>8. Smoothie bananowo-truskawkowe + lód — 13 zł
+<button onclick="dodaj('Zestaw 8',13)">Dodaj</button></p>
+
+<p>9. Smash Burger + Cheese Bacon Fries + napój — 39 zł
+<button onclick="dodaj('Zestaw 9',39)">Dodaj</button></p>
+
+<p>10. Burger wołowina ×2 + frytki duże + napoje ×2 — 58 zł
+<button onclick="dodaj('Zestaw 10',58)">Dodaj</button></p>
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>🛒 Koszyk i dostawa</h2>
+
+<div class="card">
+
+<h3>Forma odbioru</h3>
+
+<label>
+<input type="radio" name="odbior" value="Na miejscu" checked>
+Na miejscu
+</label>
+
+<br><br>
+
+<label>
+<input type="radio" name="odbior" value="Na wynos">
+Na wynos
+</label>
+
+<br><br>
+
+<label>
+<input type="radio" name="odbior" value="Dostawa">
+Dostawa (+5 zł)
+</label>
+
+<br><br>
+
+<input
+type="text"
+id="adres"
+placeholder="Adres dostawy (wymagany przy dostawie)"
+style="width:100%;padding:12px;border-radius:10px;border:none;"
+>
+
+</div>
+
+<div class="card">
+
+<h3>Twój koszyk</h3>
+
+<div id="koszyk"></div>
+
+<h2 id="suma">Razem: 0 zł</h2>
+
+<button onclick="zamowSMS()"
+style="width:100%;padding:15px;font-size:18px;">
+📱 Zamów przez SMS
+</button>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>📍 Kontakt</h2>
+
+<div class="card">
+<p><strong>Telefon:</strong> 790 879 968</p>
+<p><strong>BLIK:</strong> 790 879 968</p>
+<p><strong>Adres:</strong> Cicha 11, Grocholice, Bełchatów</p>
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>🗺️ Mapa</h2>
+
+<div class="card">
+
+<iframe
+src="https://maps.google.com/maps?q=Cicha%2011%20Belchatow&t=&z=15&ie=UTF8&iwloc=&output=embed"
+width="100%"
+height="350"
+style="border:0;border-radius:15px;"
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+<script>
+
+let koszyk = [];
+let suma = 0;
+
+function dodaj(nazwa,cena){
+
+koszyk.push({
+nazwa:nazwa,
+cena:cena
+});
+
+suma += cena;
+
+odswiezKoszyk();
+
+}
+
+function odswiezKoszyk(){
+
+let html = "";
+
+koszyk.forEach((p,index)=>{
+
+html += `
+<p>
+${p.nazwa} - ${p.cena} zł
+<button onclick="usun(${index})">
+❌
+</button>
+</p>
+`;
+
+});
+
+document.getElementById("koszyk").innerHTML = html;
+
+let odbior =
+document.querySelector('input[name="odbior"]:checked').value;
+
+let cenaKoncowa = suma;
+
+if(odbior === "Dostawa"){
+cenaKoncowa += 5;
+}
+
+document.getElementById("suma").innerHTML =
+"Razem: " + cenaKoncowa + " zł";
+
+}
+
+function usun(index){
+
+suma -= koszyk[index].cena;
+
+koszyk.splice(index,1);
+
+odswiezKoszyk();
+
+}
+
+function zamowSMS(){
+
+if(koszyk.length===0){
+
+alert("Koszyk jest pusty");
+return;
+
+}
+
+let odbior =
+document.querySelector('input[name="odbior"]:checked').value;
+
+let adres =
+document.getElementById("adres").value;
+
+if(
+odbior==="Dostawa"
+&&
+adres.trim()===""
+){
+
+alert("Podaj adres dostawy");
+return;
+
+}
+
+let tekst =
+"Zamówienie Mniam Mniam:%0A%0A";
+
+koszyk.forEach(p=>{
+
+tekst +=
+p.nazwa +
+" - " +
+p.cena +
+" zł%0A";
+
+});
+
+let cenaKoncowa = suma;
+
+if(odbior==="Dostawa"){
+
+cenaKoncowa += 5;
+
+tekst +=
+"%0ADostawa: 5 zł";
+
+}
+
+tekst +=
+"%0A%0AForma odbioru: "
++
+odbior;
+
+if(odbior==="Dostawa"){
+
+tekst +=
+"%0AAdres: "
++
+adres;
+
+}
+
+tekst +=
+"%0A%0ARazem: "
++
+cenaKoncowa
++
+" zł";
+
+window.location.href =
+"sms:790879968?body="
++
+tekst;
+
+}
+
+document
+.querySelectorAll('input[name="odbior"]')
+.forEach(el=>{
+
+el.addEventListener(
+"change",
+odswiezKoszyk
+);
+
+});
+
+</script>
+
+<footer style="
+text-align:center;
+padding:40px;
+margin-top:40px;
+background:#111;
+color:#fff;
+">
+
+<h3>Mniam Mniam</h3>
+
+<p>
+📞 790 879 968
+</p>
+
+<p>
+💳 BLIK: 790 879 968
+</p>
+
+<p>
+📍 Cicha 11,
+Grocholice,
+Bełchatów
+</p>
+
+<p>
+© 2025 Mniam Mniam
+</p>
+
+</footer>
+
+</body>
+</html>
